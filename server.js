@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost/MyDatabase',
 );
 
 http.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`Listening on port ${PORT} ...`);
 });
 
 app.get('/', (req, res) => {
