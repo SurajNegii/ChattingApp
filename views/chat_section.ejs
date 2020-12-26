@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="/stylesheets/chat_section.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="col-12 chat_window_header">
+            <input type="hidden" id="messageSenderId" value=<%- messageSenderId %>>
+            <input type="hidden" id="messageSenderName" value=<%- messageSenderName %>>
+            <input type="hidden" id="messageReceiverId" value='0'>
+            <span>
+                <span><b>Chatty</b></span>
+                <span class="material-icons">chat</span>
+            </span>
+            <span class="material-icons logout-icon">lock</span>            
+            <span class="material-icons home-icon">home</span>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 chat_window_left">
+                <!-- <input type="text" class="search_user"> -->
+                <% registeredUsers.forEach((elemnt, index) => { %>
+                    <div class="users_name user_name_hover" data-userid=<%- elemnt.user_id %>>
+                        <span class="user_logo_circle"><%- elemnt.username.substring(0, 1) %></span>
+                        <span>
+                            <%- elemnt.username %>
+                        </span>
+                    </div>
+                <%}) %>
+            </div>
+        </div>
+        <i class="copyright-msg">
+            &copy; Suraj Negi
+        </i>
+        </div>
+            <% registeredUsers.forEach((elemnt, index) => { %>
+                <div style="display:none;" class="col-lg-10 col-md-10 col-sm-10 chat_window_right <%- elemnt.user_id %>">
+                    <div class="chat_message chat_msg_<%- elemnt.user_id %>">
+                    </div>
+                    <div class="row no-gutters send_msg_field">
+                        <div class="col-lg-11 col-md-11 col-sm-11">
+                            <div class="form-group send_msg">
+                                <input type="text" class="form-control send_msg_input_box">
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary send_msg_btn">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%}) %>
+            <div class="col-lg-10 col-md-10 col-sm-10 chat_window_center_logo">
+                <span>
+                    <span class="chatty"><b>Chatty</b></span>
+                    <span class="chatty-logo material-icons">chat</span>
+                </span>
+            </div>
+        </div>
+    </body>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="/javascripts/client.js"></script>
+    <script src="/javascripts/chat_user_selection.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+</html>
